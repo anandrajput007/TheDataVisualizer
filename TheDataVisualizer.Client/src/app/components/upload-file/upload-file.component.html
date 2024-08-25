@@ -1,0 +1,18 @@
+
+<div class="row text-left">
+  <h3>File Upload</h3>
+</div>
+
+<div class="row file-drop-container">
+    <ngx-file-drop (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+      <ng-template ngx-file-drop-content-tmp class="inner-box">
+        <div class="file-drop-content">
+          <i class="bi bi-upload"></i>
+          <button type="button" (click)="fileInput.click()" class="btn btn-primary dv-btn">SELECT</button>
+          <p>OR DROP FILE HERE</p>
+          <input type="file" #fileInput (change)="onFilesSelected($event)" hidden>
+        </div>
+      </ng-template>
+    </ngx-file-drop>
+  </div>
+  

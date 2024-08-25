@@ -1,0 +1,44 @@
+<div *ngIf="enableDownload">
+  <div class="row alert alert-success success-bar">
+    <div class="col-9 d-flex message">
+      <strong class="mx-2">Success!</strong> Files have been processed succesfully!
+    </div>
+
+    <div class="col-3">
+      <div class="download-container">
+        <select class="form-select form-select-lg" [(ngModel)]="chartType" (change)="generateChart()">
+          <option value="bar">Bar Chart</option>
+          <option value="pie">Pie Chart</option>
+          <option value="line">Line Chart</option>
+        </select>
+
+        <button class="btn btn-primary dropdown-toggle dv-btn" type="button" id="downloadDropdown"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Download
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="downloadDropdown">
+          <li><a class="dropdown-item" href="#" (click)="downloadChart('image')">Image (PNG)</a></li>
+          <li><a class="dropdown-item" href="#" (click)="downloadChart('pdf')">PDF</a></li>
+          <li><a class="dropdown-item" href="#" (click)="downloadChart('ppt')">PPT</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-10">
+      <div #chart echarts [options]="chartOptions" class="dv-chart">
+      </div>
+    </div>
+    <div class="col-2 d-flex align-items-start">
+      <div *ngIf="data.length" class="headers-container">
+        <div *ngFor="let header of headers" class="form-check headers">
+          <input type="checkbox" class="form-check-input" [checked]="selectedHeaders.includes(header)" (change)="toggleHeader(header)">          
+          <label class="form-check-label">
+            {{ header }}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
