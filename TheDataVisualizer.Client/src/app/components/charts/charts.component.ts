@@ -34,6 +34,16 @@ export class ChartsComponent implements AfterViewInit ,OnChanges  {
 
   toggleHeader(header: string): void {
     const index = this.selectedHeaders.indexOf(header);
+    const keyHeader = this.headers[0];
+
+    if (header === keyHeader) {
+      return;
+    }
+
+    if (this.selectedHeaders.length === 2 && index > -1) {
+      return;
+    }
+
     if (index > -1) {
       this.selectedHeaders.splice(index, 1);
     } else {
