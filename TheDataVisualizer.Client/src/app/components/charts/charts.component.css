@@ -25,13 +25,16 @@
     padding: 0;
     border: 0px;
     border-radius: 0px;
-    background: linear-gradient(140deg, #c5c1ff9c, transparent);
-    color: #2b542c;
     font-size: 12px;
     margin-bottom: 0px;
+    background: none;
   }
   .success-bar .message {
     padding-top: 10px !important;
+    background: linear-gradient(140deg, #c5c1ff9c, transparent);
+    color: #2b542c;
+    width: 100%;
+    text-align: left;
   }
   .dv-chart {
     border: 1px solid #f2f2f2;

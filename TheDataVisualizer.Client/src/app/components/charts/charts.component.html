@@ -1,7 +1,9 @@
 <div *ngIf="enableDownload">
   <div class="row alert alert-success success-bar">
-    <div class="col-9 d-flex message">
-      <strong class="mx-2">Success!</strong> Files have been processed succesfully!
+    <div class="col-9 d-flex">
+      <div class="message" *ngIf="showMessage">
+        <strong class="mx-2">Success!</strong> Files have been processed succesfully!
+      </div>
     </div>
 
     <div class="col-3">
@@ -33,7 +35,11 @@
     <div class="col-2 d-flex align-items-start">
       <div *ngIf="data.length" class="headers-container">
         <div *ngFor="let header of headers" class="form-check headers">
-          <input type="checkbox" class="form-check-input" [checked]="selectedHeaders.includes(header)" (change)="toggleHeader(header)">          
+          <input type="checkbox" 
+          class="form-check-input" 
+          [checked]="selectedHeaders.includes(header)"
+          [disabled]="header === headers[0] || (selectedHeaders.length === 2 && selectedHeaders.includes(header))" 
+          (change)="toggleHeader(header)">          
           <label class="form-check-label">
             {{ header }}
           </label>
