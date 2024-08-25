@@ -21,6 +21,7 @@ export class ChartsComponent implements AfterViewInit ,OnChanges  {
   enableDownload: boolean = false;
   headers: string[] = [];
   selectedHeaders: string[] = [];
+  showMessage = false;
 
   ngAfterViewInit(): void {}
 
@@ -29,7 +30,17 @@ export class ChartsComponent implements AfterViewInit ,OnChanges  {
       this.headers = Object.keys(this.data[0]);
       this.selectedHeaders = [...this.headers];
       this.generateChart();
+      this.showSuccessMessage();
     }
+  }
+  showSuccessMessage(): void {
+    this.enableDownload = true;
+    this.showMessage = true;
+
+    // Hide the success message after 5 seconds
+    setTimeout(() => {
+      this.showMessage = false;
+    }, 5000);
   }
 
   toggleHeader(header: string): void {

@@ -1,7 +1,9 @@
 <div *ngIf="enableDownload">
   <div class="row alert alert-success success-bar">
-    <div class="col-9 d-flex message">
-      <strong class="mx-2">Success!</strong> Files have been processed succesfully!
+    <div class="col-9 d-flex">
+      <div class="message" *ngIf="showMessage">
+        <strong class="mx-2">Success!</strong> Files have been processed succesfully!
+      </div>
     </div>
 
     <div class="col-3">
