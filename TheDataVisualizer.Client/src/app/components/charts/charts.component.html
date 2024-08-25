@@ -34,15 +34,24 @@
     </div>
     <div class="col-2 d-flex align-items-start">
       <div *ngIf="data.length" class="headers-container">
-        <div *ngFor="let header of headers" class="form-check headers">
-          <input type="checkbox" 
-          class="form-check-input" 
-          [checked]="selectedHeaders.includes(header)"
-          [disabled]="header === headers[0] || (selectedHeaders.length === 2 && selectedHeaders.includes(header))" 
-          (change)="toggleHeader(header)">          
-          <label class="form-check-label">
-            {{ header }}
-          </label>
+        <div class="col-12 mb-4">
+          <label for="xAxisSelect">Select X-Axis:</label>
+          <select id="xAxisSelect" class="form-select" (change)="updateXAxis($event)">
+            <option *ngFor="let header of headers" [value]="header" [disabled]="header === xAxisKey">{{ header }}</option>
+          </select>
+        </div>
+
+        <div class="col-12">
+          <div *ngFor="let header of headers" class="form-check headers">
+            <input type="checkbox" 
+            class="form-check-input" 
+            [checked]="selectedHeaders.includes(header)"
+            [disabled]="header === xAxisKey || (selectedHeaders.length === 2 && selectedHeaders.includes(header))" 
+            (change)="toggleHeader(header)">          
+            <label class="form-check-label">
+              {{ header }}
+            </label>
+          </div>
         </div>
       </div>
     </div>
