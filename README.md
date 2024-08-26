@@ -108,7 +108,7 @@ Ensure that you have the following installed on your system:
    - Run `dotnet run` to start the API server. By default, the API will be accessible at `https://localhost:5001`.
 
 5. **Swagger UI**: 
-   - Open a browser and navigate to `https://localhost:5001/swagger/index.html` to access the Swagger UI and interact with the API.
+   - Open a browser and navigate to `https://localhost:7282/swagger/index.html` to access the Swagger UI and interact with the API.
 
 ### Running the Frontend (Angular Application)
 
