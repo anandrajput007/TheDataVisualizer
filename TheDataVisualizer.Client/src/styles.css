@@ -1,28 +1,77 @@
-/* You can add global styles to this file, and also import other style files */
-body{
+body {
     font-family: 'Roboto Condensed', sans-serif !important;
     font-size: 10px !important;
     background-color: #fff !important;
 }
+
 ::-webkit-scrollbar {
-    width:5px;
+    width: 5px;
 }
+
 ::-webkit-scrollbar-track {
     background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
     background: #0089ff;
     border-radius: 10px;
     opacity: .2;
-    padding-top:10px;
+    padding-top: 10px;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.row > * {padding: 0 !important;}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.row>* {
+    padding: 0 !important;
+}
 
 .dv-btn {
     background-color: #4f46e5;
     border-radius: 0;
     transition: background-color 0.3s ease;
     padding: 8px 20px;
-  }
+}
+
+.dv-btn:hover {
+    background-color: #4f46e5;
+}
+
+.dv-btn-small {
+    padding: 4px 20px;
+    height: calc(1.7125rem + 0px);
+}
+
+.form-select,
+.accordion-item:last-of-type,
+.accordion-item:first-of-type {
+    border-radius: 0;
+}
+
+label,
+.accordion-button {
+    font-size: 12px;
+}
+
+.btn:focus,
+.form-select:focus,
+button:focus {
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: transparent !important;
+    color: inherit;
+}
+
+button.accordion-button:focus,
+.form-control:focus {
+    box-shadow: inherit;
+}

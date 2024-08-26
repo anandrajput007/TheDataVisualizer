@@ -16,11 +16,13 @@ export class ChartsComponent implements AfterViewInit ,OnChanges  {
 
   chartType = 'bar';
   chartTitle: string = '';
+  chartTitleInput: string = '';
   chartOptions: any;
   selectedFormat: string = 'image';
   enableDownload: boolean = false;
   headers: string[] = [];
   selectedHeaders: string[] = [];
+  xAxisKey: string = '';
   showMessage = false;
 
   ngAfterViewInit(): void {}
@@ -29,15 +31,19 @@ export class ChartsComponent implements AfterViewInit ,OnChanges  {
     if (changes['data'] && this.data.length) {
       this.headers = Object.keys(this.data[0]);
       this.selectedHeaders = [...this.headers];
+      this.xAxisKey = this.headers[0];
+      this.chartTitle = '';
+      this.chartTitleInput = '';
+
       this.generateChart();
       this.showSuccessMessage();
     }
   }
+
   showSuccessMessage(): void {
     this.enableDownload = true;
     this.showMessage = true;
 
-    // Hide the success message after 5 seconds
     setTimeout(() => {
       this.showMessage = false;
     }, 5000);
@@ -45,9 +51,8 @@ export class ChartsComponent implements AfterViewInit ,OnChanges  {
 
   toggleHeader(header: string): void {
     const index = this.selectedHeaders.indexOf(header);
-    const keyHeader = this.headers[0];
 
-    if (header === keyHeader) {
+    if (header === this.xAxisKey) {
       return;
     }
 
@@ -60,6 +65,18 @@ export class ChartsComponent implements AfterViewInit ,OnChanges  {
     } else {
       this.selectedHeaders.push(header);
     }
+
+    this.generateChart();
+  }
+
+  updateXAxis(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.xAxisKey = selectElement.value;
+    this.generateChart();
+  }
+
+  updateChartTitle(): void {
+    this.chartTitle = this.chartTitleInput;
     this.generateChart();
   }
 
@@ -69,14 +86,10 @@ export class ChartsComponent implements AfterViewInit ,OnChanges  {
       return;
     }
 
-    // Handle different data formats
-    const xAxisKey = this.headers[0];
-    const seriesKeys = this.selectedHeaders.filter(header => header !== xAxisKey);
+    const seriesKeys = this.selectedHeaders.filter(header => header !== this.xAxisKey);
 
-    // Flatten nested keys
-    const xAxisData = this.data.map(item => item[xAxisKey]);
+    const xAxisData = this.data.map(item => item[this.xAxisKey]);
     const seriesData = seriesKeys.map(header => {
-      // Handle the possibility of nested keys
       const seriesValues = this.data.map(item => {
         const value = item[header];
         return isNaN(parseFloat(value)) ? 0 : parseFloat(value);
