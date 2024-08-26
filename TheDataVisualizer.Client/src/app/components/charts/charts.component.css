@@ -14,7 +14,6 @@
 
 .download-container .form-select {
   margin-right: 10px;
-  /* Adjust spacing as needed */
 }
 
 .download-container .btn {
@@ -54,9 +53,9 @@
   border: 1px solid #f2f2f2;
   background-color: #ffffff;
   border-left: 0px;
-  padding: 15px;
-  height: 100%;
-  ;
+  /* padding: 15px; */
+  height: 400px;
+  overflow-y: auto;
 }
 
 .headers-container .headers {
@@ -82,4 +81,33 @@
 .headers-container label {
   text-align: left;
   display: block;
+}
+
+.headers-scrollable {
+  max-height: 200px; /* Adjust as needed */
+  overflow-y: auto;
+}
+
+.accordion-button {
+  padding: 5px 15px;
+}
+
+.accordion-body {
+  min-height: 150px;
+}
+
+.accordion-select {
+  padding: 4px 10px;
+}
+
+.input-group-sm .form-control {
+  height: calc(1.7125rem + 0px);
+  padding: 0.25rem 0.5rem;
+  font-size: 12px;
+  border-radius: 0px;
+}
+
+.input-group-sm .btn {
+  font-size: 12px;
+  height: calc(1.7125rem + 0px);
 }

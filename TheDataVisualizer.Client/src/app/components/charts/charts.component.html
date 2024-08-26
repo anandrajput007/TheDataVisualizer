@@ -34,25 +34,68 @@
     </div>
     <div class="col-2 d-flex align-items-start">
       <div *ngIf="data.length" class="headers-container">
-        <div class="col-12 mb-4">
-          <label for="xAxisSelect">Select X-Axis:</label>
-          <select id="xAxisSelect" class="form-select" (change)="updateXAxis($event)">
-            <option *ngFor="let header of headers" [value]="header" [disabled]="header === xAxisKey">{{ header }}</option>
-          </select>
-        </div>
-
-        <div class="col-12">
-          <div *ngFor="let header of headers" class="form-check headers">
-            <input type="checkbox" 
-            class="form-check-input" 
-            [checked]="selectedHeaders.includes(header)"
-            [disabled]="header === xAxisKey || (selectedHeaders.length === 2 && selectedHeaders.includes(header))" 
-            (change)="toggleHeader(header)">          
-            <label class="form-check-label">
-              {{ header }}
-            </label>
+        <div class="accordion" id="headersAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Chart Title
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#headersAccordion">
+              <div class="accordion-body">
+                <div class="input-group input-group-sm">
+                  <input type="text" class="form-control" placeholder="Chart Title" [(ngModel)]="chartTitleInput">
+                  <div class="input-group-append">
+                      <button class="btn btn-primary dv-btn dv-btn-small" (click)="updateChartTitle()">Apply</button>
+                  </div>
+              </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Select X-Axis
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#headersAccordion">
+              <div class="accordion-body">                
+                <div class="col-12 mb-4">
+                  <label for="xAxisSelect">Select X-Axis:</label>
+                  <select id="xAxisSelect" class="form-select accordion-select" (change)="updateXAxis($event)">
+                    <option *ngFor="let header of headers" [value]="header" [disabled]="header === xAxisKey">{{ header }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Select Headers
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#headersAccordion">
+              <div class="accordion-body">
+                <div class="col-12">
+                  <div *ngFor="let header of headers" class="form-check headers">
+                    <input type="checkbox" 
+                    class="form-check-input" 
+                    [checked]="selectedHeaders.includes(header)"
+                    [disabled]="header === xAxisKey || (selectedHeaders.length === 2 && selectedHeaders.includes(header))" 
+                    (change)="toggleHeader(header)">          
+                    <label class="form-check-label">
+                      {{ header }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>

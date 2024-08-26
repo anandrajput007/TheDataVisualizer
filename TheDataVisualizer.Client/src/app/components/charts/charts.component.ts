@@ -16,6 +16,7 @@ export class ChartsComponent implements AfterViewInit ,OnChanges  {
 
   chartType = 'bar';
   chartTitle: string = '';
+  chartTitleInput: string = '';
   chartOptions: any;
   selectedFormat: string = 'image';
   enableDownload: boolean = false;
@@ -31,6 +32,8 @@ export class ChartsComponent implements AfterViewInit ,OnChanges  {
       this.headers = Object.keys(this.data[0]);
       this.selectedHeaders = [...this.headers];
       this.xAxisKey = this.headers[0];
+      this.chartTitle = '';
+      this.chartTitleInput = '';
 
       this.generateChart();
       this.showSuccessMessage();
@@ -69,6 +72,11 @@ export class ChartsComponent implements AfterViewInit ,OnChanges  {
   updateXAxis(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
     this.xAxisKey = selectElement.value;
+    this.generateChart();
+  }
+
+  updateChartTitle(): void {
+    this.chartTitle = this.chartTitleInput;
     this.generateChart();
   }
 
